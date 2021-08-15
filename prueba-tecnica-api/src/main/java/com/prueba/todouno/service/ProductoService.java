@@ -8,11 +8,13 @@ import com.prueba.todouno.entity.ProductoEntity;
 import com.prueba.todouno.respository.ProductoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class ProductoService {
@@ -33,19 +35,11 @@ public class ProductoService {
                 BeanUtils.copyProperties(registrarProductoRequest, productoEntity);
                 productoRepository.save(productoEntity);
                 BeanUtils.copyProperties(productoEntity, productoResponse);
+                return productoResponse;
+            }else {
+                throw new Exception("El producto ya se encuentra registrado");
             }
-            return productoResponse;
         }
-
-//            ProductoEntity productoEntity = this.productoRepository.findByCodigoProducto(registrarProductoRequest.getCodigoProducto());
-//            ProductoResponse productoResponse = new ProductoResponse();
-//            if(productoEntity == null){
-//                productoEntity = new ProductoEntity();
-//                BeanUtils.copyProperties(registrarProductoRequest, productoEntity);
-//                productoRepository.save(productoEntity);
-//                BeanUtils.copyProperties(productoEntity, productoResponse);
-//            }
-//            return productoResponse;
     }
 
     @Transactional
@@ -77,13 +71,38 @@ public class ProductoService {
         } else if (ingresoSalidaProductoRequest.getCantidadAumentarRestar() <= 0) {
             throw new Exception("El valor a disminuir es incorrecto");
         } else if (ingresoSalidaProductoRequest.getCantidadAumentarRestar() > productoEntity.getStock()) {
-            throw new Exception("El valor a disminuir es mayor stock disponible del producto");
+            throw new Exception("El valor a disminuir es mayor al stock disponible del producto");
         } else {
             productoEntity.setStock(productoEntity.getStock() - ingresoSalidaProductoRequest.getCantidadAumentarRestar());
             productoRepository.save(productoEntity);
             BeanUtils.copyProperties(productoEntity, productoResponse);
         }
         return productoResponse;
+    }
+
+    @Transactional
+    public HashMap carro(List<IngresoSalidaProductoRequest> ingresoSalidaProductoRequests) throws Exception {
+//        List<IngresoSalidaProductoRequest> ingresoSalidaProductoRequests1 =  List<>
+        if(ingresoSalidaProductoRequests == null || ingresoSalidaProductoRequests.isEmpty()){
+            throw new Exception("Carro no puede ser vacio");
+        }
+        AtomicReference<Double> valorTotal = new AtomicReference<>(0.0);
+        List<String> errors = new ArrayList<>();
+        ingresoSalidaProductoRequests.stream().forEach(x->{
+            try {
+                ProductoResponse productoResponse = this.decrement(x);
+                valorTotal.updateAndGet(v -> new Double((double) (v + productoResponse.getPrecio())));
+
+            } catch (Exception e) {
+                errors.add("producto: " + x.getCodigoProducto() + " - error: " + e.getMessage());
+            }
+        });
+
+        HashMap response = new HashMap();
+        response.put("msg", "compra Exitosa");
+        response.put("valorTotal", valorTotal);
+        response.put("productoerror",errors);
+        return response;
     }
 
     @Transactional

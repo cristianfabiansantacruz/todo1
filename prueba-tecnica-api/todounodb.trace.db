@@ -10,3 +10,19 @@ USERS [42001-200]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM USERS PRODUCTO PRODUCTO[*]"
 Syntax error in SQL statement "SELECT * FROM USERS PRODUCTO PRODUCTO[*]"; SQL statement:
 SELECT * FROM USERS PRODUCTO PRODUCTO [42000-200]
+2021-08-15 15:34:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (347)"
+Value too long for column "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (347)"; SQL statement:
+insert into producto (codigo_producto, detalle, nombre, precio, stock, id) values (?, ?, ?, ?, ?, ?) [22001-200]
+2021-08-15 15:52:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DETALLE VARCHAR(255)": "'55 pulgadassssddddddddddsdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (619)"
+Value too long for column "DETALLE VARCHAR(255)": "'55 pulgadassssddddddddddsdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (619)"; SQL statement:
+insert into producto (codigo_producto, detalle, nombre, precio, stock, id) values (?, ?, ?, ?, ?, ?) [22001-200]
+2021-08-15 15:55:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (733)"
+Value too long for column "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (733)"; SQL statement:
+insert into producto (codigo_producto, detalle, nombre, precio, stock, id) values (?, ?, ?, ?, ?, ?) [22001-200]
+2021-08-15 15:55:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (733)"
+Value too long for column "DETALLE VARCHAR(255)": "STRINGDECODE('Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto ... (733)"; SQL statement:
+insert into producto (codigo_producto, detalle, nombre, precio, stock, id) values (?, ?, ?, ?, ?, ?) [22001-200]
