@@ -1,0 +1,41 @@
+<div class="mt-2 offset-lg-2 offset-md-1 col-lg-8 col-md-10 col-sm-12">
+    <h2 class="text-center">Registrar Producto</h2>
+    <p id="profile-name" class="profile-name-card"></p>
+    <form #formV="ngForm" [formGroup]="form" class="form-signin">
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class="col-sm-12 form-group">
+            <input type="text" id="nombre" class="col-sm-12 form-control" placeholder="Nombre Producto" autofocus
+                formControlName="nombre" required>
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <textarea id="detalle" class="col-sm-12 form-control" placeholder="Detalle Producto"
+                formControlName="detalle" required></textarea>
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <input type="number" id="stock" class="form-control" placeholder="Cantidad Ej: 100" formControlName="stock" required>
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <input type="text" pattern="^\d*(\.\d{0,2})?$" id="precio" class="form-control" placeholder="Precio Ej: 1000.5" formControlName="precio" required>
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <input type="text" id="codigoProducto" class="form-control" placeholder="Codigo Producto Ej: abc123"
+                formControlName="codigoProducto" required>
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <button class="btn btn-lg btn-success btn-block btn-signin" type="button" [disabled]="!form.valid"
+                (click)="registerProduct()">Guardar</button>
+
+            <p *ngIf="error" class="text-danger">{{error.error.error}}</p>
+        </div>
+
+
+
+
+    </form>
+
+</div>
