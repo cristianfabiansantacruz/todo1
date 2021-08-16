@@ -3,7 +3,6 @@ package com.prueba.todouno.controller;
 import com.prueba.todouno.controller.model.DeleteProductoRequest;
 import com.prueba.todouno.controller.model.IngresoSalidaProductoRequest;
 import com.prueba.todouno.controller.model.RegistrarProductoRequest;
-import com.prueba.todouno.controller.model.UserRequest;
 import com.prueba.todouno.service.JWTService;
 import com.prueba.todouno.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;

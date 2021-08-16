@@ -1,19 +1,12 @@
 package com.prueba.todouno.service;
 
-import com.google.common.hash.Hashing;
 import com.prueba.todouno.controller.model.UserRequest;
 import com.prueba.todouno.controller.model.UserResponse;
 import com.prueba.todouno.entity.UserEntity;
 import com.prueba.todouno.respository.UserRepository;
-import io.jsonwebtoken.Claims;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 @Service
 public class UserService {

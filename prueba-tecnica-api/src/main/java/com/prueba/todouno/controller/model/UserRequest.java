@@ -1,6 +1,5 @@
 package com.prueba.todouno.controller.model;
 
-
 import lombok.Data;
 
 @Data

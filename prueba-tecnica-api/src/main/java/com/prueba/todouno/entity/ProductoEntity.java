@@ -1,7 +1,6 @@
 package com.prueba.todouno.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity

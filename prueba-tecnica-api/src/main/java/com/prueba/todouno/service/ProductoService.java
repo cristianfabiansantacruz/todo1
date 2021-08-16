@@ -10,11 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class ProductoService {
@@ -82,26 +79,26 @@ public class ProductoService {
 
     @Transactional
     public HashMap carro(List<IngresoSalidaProductoRequest> ingresoSalidaProductoRequests) throws Exception {
-//        List<IngresoSalidaProductoRequest> ingresoSalidaProductoRequests1 =  List<>
         if(ingresoSalidaProductoRequests == null || ingresoSalidaProductoRequests.isEmpty()){
             throw new Exception("Carro no puede ser vacio");
         }
-        AtomicReference<Double> valorTotal = new AtomicReference<>(0.0);
-        List<String> errors = new ArrayList<>();
+        final double[] valorTotal = {0.0};
+        final String[] errors = {""};
         ingresoSalidaProductoRequests.stream().forEach(x->{
             try {
                 ProductoResponse productoResponse = this.decrement(x);
-                valorTotal.updateAndGet(v -> new Double((double) (v + productoResponse.getPrecio())));
-
+                valorTotal[0] += productoResponse.getPrecio();
             } catch (Exception e) {
-                errors.add("producto: " + x.getCodigoProducto() + " - error: " + e.getMessage());
+                errors[0] += "Cod. Producto: " + x.getCodigoProducto() + " - Error: " + e.getMessage() + "\n";
             }
         });
 
         HashMap response = new HashMap();
-        response.put("msg", "compra Exitosa");
-        response.put("valorTotal", valorTotal);
-        response.put("productoerror",errors);
+        response.put("msg", "Compra Exitosa \n" +
+                "Valor Total Compra: " + valorTotal[0] +
+                "\n Productos con error: \n"+ errors[0]);
+        response.put("valorTotal", valorTotal[0]);
+        response.put("productoerror", errors[0]);
         return response;
     }
 
@@ -114,7 +111,6 @@ public class ProductoService {
             if (productoEntity == null) {
                 throw new Exception("Producto no encontrado");
             } else {
-//                ProductoEntity productoEntity1 = new ProductoEntity();
                 ProductoResponse productoResponse = new ProductoResponse();
                 BeanUtils.copyProperties(registrarProductoRequest, productoEntity);
                 productoRepository.save(productoEntity);
@@ -134,11 +130,13 @@ public class ProductoService {
             ProductoResponse productoResponse = new ProductoResponse();
             BeanUtils.copyProperties(productoEntity,productoResponse);
             productoRepository.delete(productoEntity);
+
             return productoResponse;
         }
 
     }
 
+    @Transactional
     public List<ProductoEntity> listar() {
         return this.productoRepository.findAll();
     }

@@ -17,11 +17,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @GetMapping
-//    public String welcome(){
-//        return "Welcome";
-//    }
-
     @PostMapping("/sing-up")
     public ResponseEntity<?> singUp(@RequestBody UserRequest userRequest){
         try {
