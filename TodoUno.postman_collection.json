@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "cdfbc049-1b4e-40cb-b9dc-76b892f185ba",
+		"name": "TodoUno",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "todouno sing-up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Admin\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/usuarios/sing-up",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"sing-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno sing in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Admin\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/sing-in",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"sing-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno producto listar",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjkxMTAwOTAsInVzZXJuYW1lIjoiYWRtaW4ifQ.lq9pW1pSEqkhfMNLSKwN-3ixadGs405Ipu2N3X0oKJc",
+						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "Admin",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/product/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno producto registro",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjkwOTUzNDcsInVzZXJuYW1lIjoiYW5kcmVzIn0.u0t9Etxno-QBmGNMLtAHKm-VjHMmqj703fcX4FV29zs",
+						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "Admin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"camiseta marvel\",\r\n    \"detalle\":\"camiseta logo marvel talla S\",\r\n    \"stock\":25,\r\n    \"precio\":25000,\r\n    \"codigoProducto\":\"s100-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/product/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno producto carro compras",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjkwOTUzNDcsInVzZXJuYW1lIjoiYW5kcmVzIn0.u0t9Etxno-QBmGNMLtAHKm-VjHMmqj703fcX4FV29zs",
+						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "andres",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"cantidadAumentarRestar\": 10,\r\n        \"codigoProducto\": \"p100-1\"\r\n    },\r\n    {\r\n        \"cantidadAumentarRestar\": 5,\r\n        \"codigoProducto\": \"p100-2\"\r\n    },\r\n    {\r\n        \"cantidadAumentarRestar\": 16,\r\n        \"codigoProducto\": \"s100-1\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/product/carro-compras",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"carro-compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno producto aumento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjkxMTAwOTAsInVzZXJuYW1lIjoiYWRtaW4ifQ.lq9pW1pSEqkhfMNLSKwN-3ixadGs405Ipu2N3X0oKJc",
+						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "Admin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidadAumentarRestar\":2,\r\n    \"codigoProducto\":\"p100-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/product/increment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"increment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todouno producto salida",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjkxMTAwOTAsInVzZXJuYW1lIjoiYWRtaW4ifQ.lq9pW1pSEqkhfMNLSKwN-3ixadGs405Ipu2N3X0oKJc",
+						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "Admin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidadAumentarRestar\":2,\r\n    \"codigoProducto\":\"p100-2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/product/decrement",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"decrement"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

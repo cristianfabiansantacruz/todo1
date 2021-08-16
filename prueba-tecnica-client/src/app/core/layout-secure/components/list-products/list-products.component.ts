@@ -124,12 +124,7 @@ export class ListProductsComponent implements OnInit {
       .then(res => {
         this.loadProducts();
         console.log(res)
-        this.alertService.message(`El carrito se ejecuto con exito \n
-
-        Errores:  \n${res.productoerror}\n
-
-        Valor Total:\n${res.valorTotal}`, 
-        TYPES.SUCCES);
+        this.alertService.message(res.msg, TYPES.SUCCES);
         this.listCarrito = [];
         this.dataSource2 = new MatTableDataSource(this.listCarrito);
       })
